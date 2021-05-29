@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Reachability
 
 typealias RequestCompletionBlock = (_ status:Bool, _ error:Error?, _ statusCode:Int, _ data:Data?) -> Void
 typealias APODRequestCompletionBlock = (APOD?, AppError?) -> Void
 
 class NetworkServiceManager {
     static let shared = NetworkServiceManager()
+    private let reachability:Reachability? = try? Reachability.init(hostname: baseURL)
     
     private init() {
         
@@ -41,7 +43,8 @@ class NetworkServiceManager {
             AppLog(message: "Post Data-\(postData != nil)")
             request.httpBody = postData
         }
-
+        
+        request.timeoutInterval = 10.0
 
         let dataTask = URLSession.shared.dataTask(with: request, completionHandler: {  (data, response, error) -> Void in
             if let error = error {
@@ -85,5 +88,13 @@ extension NetworkServiceManager {
                 block?(apod, error)
             }
         }
+    }
+    
+    public func isHostReachable() -> Bool {
+        guard let reachability = self.reachability else {
+            return false
+        }
+        
+        return reachability.connection == .wifi || reachability.connection == .cellular
     }
 }

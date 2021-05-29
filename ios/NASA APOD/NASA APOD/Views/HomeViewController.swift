@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HomeViewController: BaseViewController {
 
@@ -20,17 +21,32 @@ class HomeViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         ImageDownloadManager.shared.delegate = self
+        self.setDefaultData()
         self.updateUI()
+        self.registerNotifications()
+    }
+    
+    deinit {
+        self.unregisterNotifications()
+    }
+    
+    private func setDefaultData() {
+        self.titleLabel?.text = "Title"
+        self.descriptionLabel?.text = "Description"
+        self.apodImageView?.image = nil
     }
     
     private func updateUI() {
+        SVProgressHUD.show()
         self.viewModel.getAPOD {[weak self] (apod, errorMessage) in
+            SVProgressHUD.dismiss()
             guard let wself = self else {
                 return
             }
             if let apod = apod {
                 wself.updatePictureDetails(apod: apod)
-            } else if let message = errorMessage {
+            }
+            if let message = errorMessage {
                 self?.showAlertWithMessage(message: message)
             }
         }
@@ -49,6 +65,20 @@ class HomeViewController: BaseViewController {
     
     private func showImage() {
         self.apodImageView?.image = ImageDownloadManager.shared.image
+    }
+    
+    private func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    private func unregisterNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func willEnterForeground() {
+        if self.viewModel.isNewApodAvailable() {
+            self.updateUI()
+        }
     }
 }
 

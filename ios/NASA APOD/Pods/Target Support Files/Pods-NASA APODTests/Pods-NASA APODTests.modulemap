@@ -1,0 +1,6 @@
+framework module Pods_NASA_APODTests {
+  umbrella header "Pods-NASA APODTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

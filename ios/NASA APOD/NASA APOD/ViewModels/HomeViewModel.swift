@@ -15,16 +15,11 @@ class HomeViewModel {
     var apodBlock:APODCompletionBlock?
     
     func getAPOD(block:APODCompletionBlock?) {
-        guard let apod = self.apod else {
-            guard let apod = self.isAvailableInPreferences() else {
-                self.apodBlock = block
-                self.requestAPOD()
-                return
-            }
-            block?(apod, nil)
+        guard let apod = self.isAvailableInPreferences() else {
+            self.apodBlock = block
+            self.checkReachabilityAndRequest()
             return
         }
-        
         block?(apod, nil)
     }
     
@@ -34,6 +29,18 @@ class HomeViewModel {
         }
         
         return LocalStorageManager.shared.getImageWithName(name: apod.title)
+    }
+    
+    func isNewApodAvailable() -> Bool {
+        guard let date = AppPreferences.shared.lastSeenApodDate else {
+            return false
+        }
+        
+        guard !date.isToday() else {
+            return false
+        }
+        
+        return true
     }
     
     private func isAvailableInPreferences() -> APOD? {
@@ -47,6 +54,15 @@ class HomeViewModel {
         
         self.apod = AppPreferences.shared.apodInfo
         return self.apod
+    }
+    
+    private func checkReachabilityAndRequest() {
+        if NetworkServiceManager.shared.isHostReachable() {
+            self.requestAPOD()
+        } else {
+            self.apod = AppPreferences.shared.apodInfo
+            self.apodBlock?(self.apod, "Internet not reachable")
+        }
     }
     
     private func requestAPOD() {
