@@ -25,6 +25,7 @@
 		622F367026624A4D0005D7B6 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F366F26624A4D0005D7B6 /* ImageDownloadManager.swift */; };
 		622F367626624EEB0005D7B6 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F367526624EEB0005D7B6 /* AppPreferences.swift */; };
 		622F367A266251AA0005D7B6 /* LocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F3679266251AA0005D7B6 /* LocalStorageManager.swift */; };
+		622F367F266259950005D7B6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F367E266259950005D7B6 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		622F366F26624A4D0005D7B6 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		622F367526624EEB0005D7B6 /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
 		622F3679266251AA0005D7B6 /* LocalStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManager.swift; sourceTree = "<group>"; };
+		622F367E266259950005D7B6 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				622F363D266239880005D7B6 /* Views */,
 				622F363F266239970005D7B6 /* Models */,
 				622F363C266239810005D7B6 /* Common */,
+				622F367D2662597D0005D7B6 /* Extensions */,
 				622F36402662399F0005D7B6 /* Managers */,
 				622F3642266239C00005D7B6 /* Storyboards */,
 				622F3641266239AB0005D7B6 /* Resources */,
@@ -186,6 +189,14 @@
 				622F3609266238490005D7B6 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		622F367D2662597D0005D7B6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				622F367E266259950005D7B6 /* DateExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				622F3644266239F00005D7B6 /* BaseViewController.swift in Sources */,
+				622F367F266259950005D7B6 /* DateExtension.swift in Sources */,
 				622F365426623BB20005D7B6 /* APOD.swift in Sources */,
 				622F35FF266238480005D7B6 /* AppDelegate.swift in Sources */,
 				622F367026624A4D0005D7B6 /* ImageDownloadManager.swift in Sources */,

@@ -37,6 +37,14 @@ class HomeViewModel {
     }
     
     private func isAvailableInPreferences() -> APOD? {
+        guard let date = AppPreferences.shared.lastSeenApodDate else {
+            return nil
+        }
+        
+        guard date.isToday() else {
+            return nil
+        }
+        
         self.apod = AppPreferences.shared.apodInfo
         return self.apod
     }
