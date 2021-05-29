@@ -24,7 +24,7 @@ class NetworkServiceManager {
     }
     
     private func performRequest(method:RequestMethod, endURL:EndURL, parameters:[String:Any]?, completionBlock:@escaping RequestCompletionBlock) {
-        let url = baseURL + endURL.rawValue + apiKey
+        let url = baseURL + endURL.rawValue + "api_key=" + apiKey
         
         AppLog(message: "requestUrl-\(url)")
 
