@@ -61,7 +61,11 @@ class HomeViewModel {
             self.requestAPOD()
         } else {
             self.apod = AppPreferences.shared.apodInfo
-            self.apodBlock?(self.apod, "Internet not reachable")
+            var message = "We are not connected to the internet, showing you the last image we have."
+            if self.apod == nil {
+                message = "We are not connected to the internet"
+            }
+            self.apodBlock?(self.apod, message)
         }
     }
     
