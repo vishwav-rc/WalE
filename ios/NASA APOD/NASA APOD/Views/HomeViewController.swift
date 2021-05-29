@@ -40,7 +40,11 @@ class HomeViewController: BaseViewController {
         self.titleLabel?.text = apod.title
         self.descriptionLabel?.text = apod.explanation
 
-        ImageDownloadManager.shared.downloadImage(urlString: apod.url)
+        if let image = self.viewModel.getImage() {
+            self.apodImageView?.image = image
+        } else {
+            ImageDownloadManager.shared.downloadImage(urlString: apod.url, name: apod.title)
+        }
     }
     
     private func showImage() {

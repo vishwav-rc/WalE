@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias APODCompletionBlock = (APOD?, String?) -> Void
 
@@ -15,12 +16,29 @@ class HomeViewModel {
     
     func getAPOD(block:APODCompletionBlock?) {
         guard let apod = self.apod else {
-            self.apodBlock = block
-            self.requestAPOD()
+            guard let apod = self.isAvailableInPreferences() else {
+                self.apodBlock = block
+                self.requestAPOD()
+                return
+            }
+            block?(apod, nil)
             return
         }
         
         block?(apod, nil)
+    }
+    
+    func getImage() -> UIImage? {
+        guard let apod = self.apod else {
+            return nil
+        }
+        
+        return LocalStorageManager.shared.getImageWithName(name: apod.title)
+    }
+    
+    private func isAvailableInPreferences() -> APOD? {
+        self.apod = AppPreferences.shared.apodInfo
+        return self.apod
     }
     
     private func requestAPOD() {
@@ -29,6 +47,8 @@ class HomeViewModel {
                 return
             }
             wself.apod = apod
+            AppPreferences.shared.apodInfo = apod
+            AppPreferences.shared.lastSeenApodDate = Date()
             DispatchQueue.main.async {
                 wself.apodBlock?(apod, error?.description)
             }

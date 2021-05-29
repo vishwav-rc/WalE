@@ -22,7 +22,7 @@ class ImageDownloadManager {
         
     }
         
-    private func downloadImage(url:URL) {
+    private func downloadImage(url:URL, name:String) {
         DispatchQueue.global(qos: .background).async {
             do {
                 AppLog(message: "Image downloading started")
@@ -32,6 +32,7 @@ class ImageDownloadManager {
                     return
                 }
                 
+                LocalStorageManager.shared.saveImageDataWithName(data: data, name: name)
                 let image = UIImage(data: data)
                 self.image = image
                 AppLog(message: "Image downloading completed")
@@ -44,12 +45,12 @@ class ImageDownloadManager {
 }
 
 extension ImageDownloadManager {
-    public func downloadImage(urlString:String) {
+    public func downloadImage(urlString:String, name:String) {
         guard let url = URL(string: urlString) else {
             self.delegate?.imageDownloadingFailed(message: "Not a valid url")
             return
         }
         
-        self.downloadImage(url: url)
+        self.downloadImage(url: url, name: name)
     }
 }

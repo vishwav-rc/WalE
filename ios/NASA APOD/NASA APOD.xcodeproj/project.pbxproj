@@ -23,6 +23,8 @@
 		622F366626623DD30005D7B6 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F366526623DD30005D7B6 /* HelperFunctions.swift */; };
 		622F366A26623F8B0005D7B6 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F366926623F8B0005D7B6 /* AppError.swift */; };
 		622F367026624A4D0005D7B6 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F366F26624A4D0005D7B6 /* ImageDownloadManager.swift */; };
+		622F367626624EEB0005D7B6 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F367526624EEB0005D7B6 /* AppPreferences.swift */; };
+		622F367A266251AA0005D7B6 /* LocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622F3679266251AA0005D7B6 /* LocalStorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		622F366526623DD30005D7B6 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		622F366926623F8B0005D7B6 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		622F366F26624A4D0005D7B6 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		622F367526624EEB0005D7B6 /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		622F3679266251AA0005D7B6 /* LocalStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 				622F365B26623C450005D7B6 /* Enums.swift */,
 				622F366526623DD30005D7B6 /* HelperFunctions.swift */,
 				622F366926623F8B0005D7B6 /* AppError.swift */,
+				622F367526624EEB0005D7B6 /* AppPreferences.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			children = (
 				622F365F26623CF10005D7B6 /* NetworkServiceManager.swift */,
 				622F366F26624A4D0005D7B6 /* ImageDownloadManager.swift */,
+				622F3679266251AA0005D7B6 /* LocalStorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -288,12 +294,14 @@
 				622F367026624A4D0005D7B6 /* ImageDownloadManager.swift in Sources */,
 				622F3601266238480005D7B6 /* SceneDelegate.swift in Sources */,
 				622F365826623C3B0005D7B6 /* Constants.swift in Sources */,
+				622F367626624EEB0005D7B6 /* AppPreferences.swift in Sources */,
 				622F366626623DD30005D7B6 /* HelperFunctions.swift in Sources */,
 				622F366026623CF10005D7B6 /* NetworkServiceManager.swift in Sources */,
 				622F365026623A820005D7B6 /* HomeViewModel.swift in Sources */,
 				622F366A26623F8B0005D7B6 /* AppError.swift in Sources */,
 				622F365C26623C450005D7B6 /* Enums.swift in Sources */,
 				622F364C26623A3B0005D7B6 /* HomeViewController.swift in Sources */,
+				622F367A266251AA0005D7B6 /* LocalStorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
